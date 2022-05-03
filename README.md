@@ -14,6 +14,7 @@ PUT: api/Course/5
 POST: api/Course
 
 DELETE: api/Course/5
+
 2. Use Student Endpoints:
 
 GET: api/Student
