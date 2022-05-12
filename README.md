@@ -21,8 +21,10 @@ POST: https://localhost:7237/api/course
 
 
 {
+
     "CourseName": "Chemistry",
     "ProfessorName": "Mabel Shah"
+
 }
 
 
@@ -38,10 +40,12 @@ POST: https://localhost:7237/api/student
 
 
 {
+
     "FirstName": "Halle",
     "MiddleName": "",
     "LastName": "Hampton",
     "Email": "HalleHampton@gmail.com"
+
 }
 
 
