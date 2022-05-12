@@ -3,38 +3,38 @@ CSCI 39537 Final Project
 
 ## About
 ### How to Use
-1. Use Course Endpoints:
+1. Use Course API Endpoints:
 
-GET: api/Course
+GET: https://localhost:7237/api/course
 
-GET: api/Course/5
+GET: https://localhost:7237/api/course/1
 
-PUT: api/Course/5
+POST: https://localhost:7237/api/course
 
-POST: api/Course
+{
+    "CourseName": "Chemistry",
+    "ProfessorName": "Mabel Shah"
+}
 
-DELETE: api/Course/5
+DELETE: https://localhost:7237/api/course/1
 
-2. Use Student Endpoints:
+2. Use Student API Endpoints:
 
-GET: api/Student
+GET: https://localhost:7237/api/student
 
-GET: api/Student/5
+GET: https://localhost:7237/api/student/1
 
-PUT: api/Student/5
+POST: https://localhost:7237/api/student
 
-POST: api/Student
+{
+    "FirstName": "Halle",
+    "MiddleName": "",
+    "LastName": "Hampton",
+    "Email": "HalleHampton@gmail.com"
+}
 
-DELETE: api/Student/5
+DELETE: https://localhost:7237/api/student/1
 
-3. Use Enrollment Endpoints:
+3. Use Enrollment API Endpoints:
 
-GET: api/Enrollment
-
-GET: api/Enrollment/5
-
-PUT: api/Enrollment/5
-
-POST: api/Enrollment
-
-DELETE: api/Enrollment/5
+GET: https://localhost:7237/api/enrollment

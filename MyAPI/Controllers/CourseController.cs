@@ -34,77 +34,70 @@ namespace MyAPI.Controllers
         {
             var course = await _context.Courses.FindAsync(id);
 
-            var response = new Response();
-
-            response.statusCode = 400;
-            response.statusDescription = "Client errors: Page not found. The site or page couldn’t be reached.";
+            var response = new Response
+            {
+                statusCode = 400,
+                statusDescription = "Error. No course found for the given id."
+            };
 
             if (course != null)
             {
                 response.statusCode = 200;
-                response.statusDescription = "Success! The request was successfully completed";
-                response.courses.Add(course);
+                response.statusDescription = "Success! The request was successfully completed.";
+                response.course = course;
             }
 
             return response;
         }
 
-        // PUT: api/Course/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourse(int id, Course course)
-        {
-            if (id != course.CourseID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(course).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CourseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
         // POST: api/Course
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Course>> PostCourse(Course course)
+        public async Task<ActionResult<Response>> PostCourse(Course course)
         {
-            _context.Courses.Add(course);
-            await _context.SaveChangesAsync();
+            var response = new Response();
 
-            return CreatedAtAction("GetCourse", new { id = course.CourseID }, course);
+            try
+            {
+                _context.Courses.Add(course);
+                await _context.SaveChangesAsync();
+                response.statusCode = 200;
+                response.statusDescription = "Success! The request was successfully completed.";
+                response.course = course;
+            }
+            catch (Exception ex)
+            {
+                response.statusCode = 400;
+                response.statusDescription = "Error. Wrong input format";
+            }
+
+            return response;
         }
 
         // DELETE: api/Course/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourse(int id)
+        public async Task<Response> DeleteCourse(int id)
         {
             var course = await _context.Courses.FindAsync(id);
+
+            var response = new Response
+            {
+                statusCode = 200,
+                statusDescription = "Success! The request was successfully completed.",
+                course = course
+            };
+
             if (course == null)
             {
-                return NotFound();
+                response.statusCode = 400;
+                response.statusDescription = "Error. No course found for the given id.";
+                return response;
             }
 
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
 
-            return NoContent();
+            return response;
         }
 
         private bool CourseExists(int id)

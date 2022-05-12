@@ -5,8 +5,7 @@ namespace MyAPI.Models
     {
         public int statusCode { get; set; }
         public string? statusDescription { get; set; }
-        public List<Course>? courses = new();
-        public List<Student>? students = new();
-        public List<Enrollment>? enrollment = new();
+        public Course? course { get; set; }
+        public Student? student { get; set; }
     }
 }
