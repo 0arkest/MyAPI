@@ -91,7 +91,7 @@ namespace MyAPI.Controllers
             if (student == null)
             {
                 response.statusCode = 400;
-                response.statusDescription = "Error. No course found for the given id.";
+                response.statusDescription = "Error. No student found for the given id.";
                 return response;
             }
 

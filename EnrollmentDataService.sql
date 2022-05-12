@@ -12,6 +12,7 @@ CREATE TABLE Courses(
 );
 
 # Students(StudentID, FirstName, MiddleName, LastName, Email)
+# extra constraint called FullName
 DROP TABLE IF EXISTS Students;
 CREATE TABLE Students(
     StudentID INT NOT NULL AUTO_INCREMENT,
@@ -23,8 +24,11 @@ CREATE TABLE Students(
     Email VARCHAR(100) NOT NULL
 );
 
-# many-to-many
-# Enrollment(CourseID, StudentID)
+/*
+Enrollment(CourseID, StudentID)
+many-to-many relationships between table Courses and table Students.
+stores foreign keys of tables.
+*/
 DROP TABLE IF EXISTS Enrollment;
 CREATE TABLE Enrollment(
 	CourseID INT NOT NULL,
@@ -50,7 +54,7 @@ INSERT INTO Enrollment(CourseID, StudentID) VALUES("3", "3");
 INSERT INTO Enrollment(CourseID, StudentID) VALUES("1", "3");
 */
 
-/*
+/* see all student info
 SELECT s.FirstName, s.LastName, s.Email, c.CourseName, c.ProfessorName FROM Enrollment e
 INNER JOIN Students s on s.StudentID = e.StudentID
 INNER JOIN Courses c on c.CourseID = e.CourseID;
