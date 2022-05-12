@@ -19,14 +19,12 @@ GET: https://localhost:7237/api/course/1
 
 POST: https://localhost:7237/api/course
 
-
 {
 
     "CourseName": "Chemistry",
     "ProfessorName": "Mabel Shah"
 
 }
-
 
 DELETE: https://localhost:7237/api/course/1
 
